@@ -54,16 +54,16 @@
       </div>
     </header>
 
-    <!-- issue selection  section  -->
+    <!-- issue selection btn  section  -->
     <section class="container mx-auto mt-12">
       <div class="navbar bg-base-300 gap-6">
-        <button class="btn btn-primary btn-primary text-xl">All</button>
-        <button class="btn btn-outline btn-primary text-xl">Open</button>
-        <button class="btn btn-outline btn-primary text-xl">Closed</button>
+        <button id="all-btn" class="btn btn-primary btn-primary text-xl">All</button>
+        <button id="open-btn" class="btn btn-outline btn-primary text-xl">Open</button>
+        <button id="closed-btn" class="btn btn-outline btn-primary text-xl">Closed</button>
       </div>
     </section>
 
-    <!-- issues display section  -->
+    <!-- how many issues have? display section  -->
     <section class="container mx-auto mt-4">
       <div class="navbar bg-base-200 flex justify-between px-5">
         <div class="flex items-center gap-2">
@@ -94,9 +94,23 @@
 
     <!-- display issues card section  -->
     <section class="container mx-auto my-5">
-        <div id="issues-card-container" class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-base-300 p-8 rounded-xl">
-           
-           
+        <div id="issues-card-container" class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-base-300 p-8 rounded-xl ">  
+            
+        </div>
+
+    </section>
+
+    <!-- display open issues  -->
+      <section class="container mx-auto my-5">
+        <div id="open-issues-card-container" class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-base-300 p-8 rounded-xl hidden">  
+            
+        </div>
+
+    </section>
+
+     <!-- display closed issues  -->
+      <section class="container mx-auto my-5">
+        <div id="closed-issues-card-container" class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-base-300 p-8 rounded-xl hidden">  
             
         </div>
 
