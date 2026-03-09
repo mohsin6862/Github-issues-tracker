@@ -11,16 +11,72 @@
 //         </div>
 //     `).join("");
 // }
-// load all issues by fetching api 
-const loadIssues = ()=>{
-    fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
-    .then(res => res.json())
-    .then(data =>{
-        displayIssues(data.data)
-         displayOpenIssues(data.data);
-         displayClosedIssues(data.data);
-    })
+
+// get buttons
+const allBtn = document.getElementById('all-btn');
+const openBtn = document.getElementById('open-btn');
+const closedBtn = document.getElementById('closed-btn');
+
+// get containers
+const allContainer = document.getElementById('issues-card-container');
+const openContainer = document.getElementById('open-issues-card-container');
+const closedContainer = document.getElementById('closed-issues-card-container');
+const countIssues = document.getElementById('issues');
+
+// Highlight active button
+function setActiveButton(activeBtn) {
+    [allBtn, openBtn, closedBtn].forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+    });
+    activeBtn.classList.add('btn-primary');
+    activeBtn.classList.remove('btn-outline');
 }
+
+// Click button to perform
+allBtn.addEventListener('click', () => {
+    allContainer.classList.remove('hidden');
+    openContainer.classList.add('hidden');
+    closedContainer.classList.add('hidden');
+     // number of all issues
+    countIssues.innerText = allContainer.children.length;
+    setActiveButton(allBtn);
+});
+
+openBtn.addEventListener('click', () => {
+    allContainer.classList.add('hidden');
+    openContainer.classList.remove('hidden');
+    closedContainer.classList.add('hidden');
+    // number of open issues
+    countIssues.innerText = openContainer.children.length; 
+    setActiveButton(openBtn);
+});
+
+closedBtn.addEventListener('click', () => {
+    allContainer.classList.add('hidden');
+    openContainer.classList.add('hidden');
+    closedContainer.classList.remove('hidden');
+    // number of closed issues
+    countIssues.innerText = closedContainer.children.length; 
+    setActiveButton(closedBtn);
+});
+
+// Load and display issues
+const loadIssues = () => {
+    fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
+        .then(res => res.json())
+        .then(data => {
+            const issues = data.data;
+            displayIssues(issues);
+            displayOpenIssues(issues);
+            displayClosedIssues(issues);
+            
+            // initial count: show total issues
+            countIssues.innerText = issues.length;
+        });
+};
+
+
 
 // display all issues 
 
@@ -31,7 +87,7 @@ const displayIssues =(issues)=>{
         const issueCard = document.createElement('div');
         issueCard.innerHTML="";
 
-        console.log(issue)
+        // console.log(issue)
         issueCard.innerHTML =`
          <div class=" bg-white h-[550px] shadow-lg p-8 rounded-lg border-t-6 ${issue.status === "open" ? "border-t-teal-600" : "border-t-purple-600"}">
                 <div class="flex justify-between">
@@ -79,14 +135,14 @@ const displayIssues =(issues)=>{
 
 // display open issues 
 const displayOpenIssues =(issues)=>{
-    console.log(issues.length)
+    // console.log(issues.length)
     const issuesContainer = document.getElementById('open-issues-card-container')
     issuesContainer.innerHTML=""
 
     issues
     .filter(issue => issue.status === "open")
     .forEach(issue => {
-        console.log(issue.length)
+        // console.log(issue.length)
 
         const issueCard = document.createElement('div');
 
@@ -149,15 +205,15 @@ const displayOpenIssues =(issues)=>{
 
 // display closed issues 
 const displayClosedIssues =(issues)=>{
-     console.log(issues.length)
+    //  console.log(issues.length)
     const issuesContainer = document.getElementById('closed-issues-card-container')
     issuesContainer.innerHTML=""
 
     issues
     .filter(issue => issue.status === "closed")
     .forEach(issue => {
-        console.log(issue.length)
-        console.log(issue)
+        // console.log(issue.length)
+        // console.log(issue)
 
         const issueCard = document.createElement('div');
 
