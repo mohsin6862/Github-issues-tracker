@@ -4,7 +4,7 @@ document.getElementById('login-btn').addEventListener('click',function(){
    const getUserName = userName.value;
    const getPassword = password.value;
 //    console.log('username : ',getUserName, 'pasword : ', getPassword) 
-if(getUserName === 'admin'&& getPassword === 'admin'){
+if(getUserName === 'admin'&& getPassword === 'admin123'){
     alert('Sign in Successful')
     window.location.assign("./home.html");
 }
