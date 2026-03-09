@@ -76,7 +76,31 @@ const loadIssues = () => {
         });
 };
 
+// Search issues
+document.getElementById('search-btn').addEventListener('click', () => {
+    const searchText = document.getElementById('search-text').value.trim();
+    if (!searchText) return loadIssues();
 
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`)
+        .then(res => res.json())
+        .then(data => {
+            const issues = data.data;
+
+            // Update all three containers with search results
+            displayIssues(issues);
+            displayOpenIssues(issues);
+            displayClosedIssues(issues);
+
+            // Update count issues
+            if (!allContainer.classList.contains('hidden')) {
+                countIssues.innerText = allContainer.children.length;
+            } else if (!openContainer.classList.contains('hidden')) {
+                countIssues.innerText = openContainer.children.length;
+            } else if (!closedContainer.classList.contains('hidden')) {
+                countIssues.innerText = closedContainer.children.length;
+            }
+        });
+});
 
 // display all issues 
 
