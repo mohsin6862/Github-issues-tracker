@@ -251,7 +251,7 @@ const displayOpenIssues = (issues) => {
       const issueCard = document.createElement("div");
 
       issueCard.innerHTML = `
-        <div class="bg-white h-[550px] shadow-lg p-8 rounded-lg border-t-6 border-t-teal-600">
+        <div onclick="openModal(${issue.id})" class="bg-white h-[550px] shadow-lg p-8 rounded-lg border-t-6 border-t-teal-600">
 
             <div class="flex justify-between">
                 <img class="border-green-500 bg-slate-200 h-12 w-12 p-2 rounded-full" src="./assets/Open-Status.png" alt="">
@@ -325,7 +325,7 @@ const displayClosedIssues = (issues) => {
       const issueCard = document.createElement("div");
 
       issueCard.innerHTML = `
-        <div class="bg-white h-[550px] shadow-lg p-8 rounded-lg border-t-6 border-t-purple-600">
+        <div onclick="openModal(${issue.id})" class="bg-white h-[550px] shadow-lg p-8 rounded-lg border-t-6 border-t-purple-600">
 
             <div class="flex justify-between">
                 <img class="border-purple-500 bg-slate-200 h-12 w-12 p-2 rounded-full" src="./assets/Closed- Status .png" alt="">
