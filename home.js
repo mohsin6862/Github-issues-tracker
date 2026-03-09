@@ -63,6 +63,7 @@ closedBtn.addEventListener("click", () => {
 
 // Load and display issues
 const loadIssues = () => {
+    showSpiner(true);
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
     .then((data) => {
@@ -103,6 +104,21 @@ document.getElementById("search-btn").addEventListener("click", () => {
       }
     });
 });
+
+// spiner
+const showSpiner = (status)=>{
+
+    if(status==true){
+        document.getElementById('spiner').classList.remove('hidden');
+        document.getElementById('issues-card-container').classList.add('hidden');
+
+    }
+    else{
+        document.getElementById('spiner').classList.add('hidden');
+        document.getElementById('issues-card-container').classList.remove('hidden');
+    }
+
+}
 
 // open modal
 const openModal = async (id) => {
@@ -217,6 +233,7 @@ const displayIssues = (issues) => {
         `;
 
     issuesContainer.appendChild(issueCard);
+    showSpiner(false)
   });
 };
 
@@ -287,6 +304,7 @@ const displayOpenIssues = (issues) => {
         `;
 
       issuesContainer.appendChild(issueCard);
+      showSpiner(false)
     });
 };
 
@@ -360,6 +378,7 @@ const displayClosedIssues = (issues) => {
         `;
 
       issuesContainer.appendChild(issueCard);
+      showSpiner(false)
     });
 };
 loadIssues();
